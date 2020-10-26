@@ -1,0 +1,18 @@
+
+*.ipch
+*.opendb
+*.db-wal
+*.db-shm
+*.db
+.vs/Phusics solver/v16/.suo
+*.ilk
+*.pdb
+*.recipe
+*.obj
+*.enc
+*.tlog
+*.idb
+*.filters
+*.sln
+*.user
+*.vcxproj
