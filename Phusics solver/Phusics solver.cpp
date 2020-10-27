@@ -6,9 +6,12 @@
 #include <iostream>
 #include <sstream>
 #include <cstdlib>
+#include <functional>
 
-#define log(x) (std::cout << x << ' ')
-#define func(x) (pow(x, 2))
+#define findMax(a, b) (a > b) ? a : b
+#define findMin(a, b) (a < b) ? a : b
+
+#define subtrack(a, b) (a < 0)&&(b < 0) ? ((abs(a) > abs(b)) ? (-1)*(abs(a) - abs(b)) : abs(b) - abs(a)) : (((a < 0)||(b < 0))&&((a == 0)||(b == 0)) ? findMax(abs(a) ,abs(b)) : (((a < 0)&&(b > 0)||((a > 0)&&(b < 0))) ? findMax(a, b) + abs(findMin(a, b)) : ((a > 0)&&(b > 0)) ? findMax(a, b) - findMin(a, b) : 0))
 
 void printTemplate(int x, int y, int h, int w) {
 
@@ -44,6 +47,8 @@ void printTemplate(int x, int y, int h, int w) {
 int main() {
 
 	int x, y;
+
+	printf("Write amount of rows and columns separated by comma (\",\")\n");
 	scanf_s("%d, %d", &x, &y);
 
 	std::vector<std::vector<float>> table;
@@ -97,22 +102,35 @@ int main() {
 	for (int i = 0; i < average.size(); i++)
 		printf(" %8.3f  \t", average[i]);
 
+	for (int j = 0; j < y; j++) {
+		for (int i = 0; i < x; i++) {
+			deltaTable[i][j] = table[i][j] - average[j];
+		}
+	}
+	printf("\n ");
+
+	printf("\n");
 	for (int i = 0; i < x; i++) {
 		for (int j = 0; j < y; j++) {
-			deltaTable[i][j] = abs(table[i][j]-average[i]);
+			printf("\t %8.3f", deltaTable[i][j]);
 		}
+		printf("\n ");
 	}
 
 	for (int j = 0; j < y; j++) {
 		float sum = 0.0;
 		for (int i = 0; i < x; i++) {
-			sum += deltaTable[i][j];
+			sum = sum + abs(deltaTable[i][j]);
 		}
 		averageDelta.push_back(sum / x);
 	}
 
 	printf("\n Average delta:");
-	for (int i = 0; i < average.size(); i++)
+	for (int i = 0; i < averageDelta.size(); i++)
 		printf(" %8.3f  \t", averageDelta[i]);
+	printf("\n ");
 
+	printf("\n Error:");
+	for (int i = 0; i < averageDelta.size(); i++)
+		printf(" %8.3f  \t", averageDelta[i] / average[i]);
 }
