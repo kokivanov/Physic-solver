@@ -18,3 +18,5 @@
 *.vcxproj
 *.manifest
 *.testlog
+*.ipdb
+*.iobj

@@ -3,4 +3,8 @@ C:\Users\kokiv\source\repos\Phusics solver\Phusics solver\Phusics solver.cpp(30,
 C:\Users\kokiv\source\repos\Phusics solver\Phusics solver\Phusics solver.cpp(104,20): warning C4018: '<': signed/unsigned mismatch
 C:\Users\kokiv\source\repos\Phusics solver\Phusics solver\Phusics solver.cpp(131,20): warning C4018: '<': signed/unsigned mismatch
 C:\Users\kokiv\source\repos\Phusics solver\Phusics solver\Phusics solver.cpp(136,20): warning C4018: '<': signed/unsigned mismatch
-  Phusics solver.vcxproj -> C:\Users\kokiv\source\repos\Phusics solver\Debug\Phusics solver.exe
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 150 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  Phusics solver.vcxproj -> C:\Users\kokiv\source\repos\Phusics solver\Release\Phusics solver.exe
