@@ -82,6 +82,8 @@ int main() {
 		}
 	}
 
+	system("CLS");
+
 	printf("\n");
 	for (int i = 0; i < x; i++) {
 		for (int j = 0; j < y; j++) {
@@ -133,4 +135,9 @@ int main() {
 	printf("\n Error:");
 	for (int i = 0; i < averageDelta.size(); i++)
 		printf(" %8.3f  \t", averageDelta[i] / average[i]);
+
+	printf("\n ");
+
+	system("pause");
+	system("pause");
 }
