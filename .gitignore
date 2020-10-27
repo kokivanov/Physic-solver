@@ -16,3 +16,5 @@
 *.sln
 *.user
 *.vcxproj
+*.manifest
+*.testlog

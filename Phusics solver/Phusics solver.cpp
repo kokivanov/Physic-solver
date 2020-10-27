@@ -1,107 +1,118 @@
-﻿#include <iostream>
-#include <stdio.h>
+﻿#include <stdio.h>
 #include <cmath>
 #include <windows.h>
+#include <vector>
+#include <string>
+#include <iostream>
+#include <sstream>
+#include <cstdlib>
 
 #define log(x) (std::cout << x << ' ')
 #define func(x) (pow(x, 2))
 
-// Printing a row that show which element is being edited now
+void printTemplate(int x, int y, int h, int w) {
 
-void printRow(int size, int pos) {
+	printf("\n    ");
+
+	for (int i = 0; i < y; i++) {
+		
+		printf(" %2i", i);
+
+	}
+
 	printf("\n");
-	for (int i = 0; i < size; i++) {
-		if (i == pos)
-			printf("[@]");
-		else 
-			printf("[ ]");
-	}
-	printf("\n");
-}
 
-// sd
+	for (int i = 0; i < x; i++) {
 
-void fillArray(float* table[], int x, int y) {
-	if (y != 0){
-		for (int i = 0; i < y; i++) {
-			printf("Fill row %i", i);
-			for (int j = 0; j < x; j++) {
-				printRow(x, j);
-				scanf_s("%f", &table[i][j]);
-			}
-		}
-	}
-	else {
-		for (int i = 0; i < x; i++) {
-			printRow(x, i);
-			scanf_s("%f.3", table[i]);
-		}
-	}
-}
+		printf("%2i\. ", i+1);
 
-//
+		for (int j = 0; j < y; j++) {
+			
+			if ((i == h) && (j == w))
+				printf("[#]");
+			else
+				printf("[ ]");
 
-void printArray(float* table[], int x, int y) {
-	if (y != 0) {
-		for (int i = 0; i < y; i++) {
-			for (int j = 0; j < x; j++) {
-				printf("\t %f.3", table[i][j]);
-			}
-			printf("\n");
 		}
-	}
-	else {
-		for (int i = 0; i < x; i++) {
-			printf("\t %f.3", *table[i]);
-		}
+
 		printf("\n");
+
 	}
+
 }
 
-int main()
-{
-	// ============================= Setting localization =====================================
-	SetConsoleCP(1251);
-	SetConsoleOutputCP(1251);
-	setlocale(LC_ALL, "ru");
+int main() {
 
-	// ============================== Initialising variables ==================================
 	int x, y;
+	scanf_s("%d, %d", &x, &y);
 
-	printf("Уведіть розміри таблиці (стовпці та ряди через кому)\n");
-	scanf_s("%i, %i", &x, &y);
-
-	float **table = new float* [x];
-	for (int i = 0; i < x; i++)
-		table[i] = new float[y];
-
-	char* heading = new char[x];
-	float* average = new float[x];
-
-	float** delta = new float*[x];
-	for (int i = 0; i < x; i++)
-		delta[i] = new float[y];
-	
+	std::vector<std::vector<float>> table;
+	std::vector<std::vector<float>> deltaTable;
+	std::vector<std::string> heading;
+	std::vector<float> average;
+	std::vector<float> averageDelta;
 
 
-	printf("Fill headings\n");
 	for (int i = 0; i < x; i++) {
-		printRow(x, i);
-		scanf_s("%c", &heading[x], 1);
+		table.push_back(std::vector<float>());
+		for (int j = 0; j < y; j++) {
+			table[i].push_back(0.0);
+		}
 	}
 
 	for (int i = 0; i < x; i++) {
-		printf("\t %c", heading[i]);
+		deltaTable.push_back(std::vector<float>());
+		for (int j = 0; j < y; j++) {
+			deltaTable[i].push_back(0.0);
+		}
 	}
+
+
+
+	for (int i = 0; i < x; i++) {
+		printf("Row %i \n", i + 1);
+		for (int j = 0; j < y; j++) {
+			printTemplate(x, y, i, j);
+			scanf_s("%fl", &(table[i][j]));
+		}
+	}
+
 	printf("\n");
+	for (int i = 0; i < x; i++) {
+		for (int j = 0; j < y; j++) {
+			printf("\t %8.3f", table[i][j]);
+		}
+		printf("\n ");
+	}
 
-	fillArray(table, x, y);
+	for (int j = 0; j < y; j++) {
+		float sum = 0.0;
+		for (int i = 0; i < x; i++) {
+			sum += table[i][j];
+		}
+		average.push_back(sum / x);
+	}
 
-	printArray(table, x, y);
+	printf("\n Average:");
+	for (int i = 0; i < average.size(); i++)
+		printf(" %8.3f  \t", average[i]);
 
-	log('\n');
-	
-	delete [] table;
+	for (int i = 0; i < x; i++) {
+		for (int j = 0; j < y; j++) {
+			deltaTable[i][j] = abs(table[i][j]-average[i]);
+		}
+	}
 
-	system("pause");
+	for (int j = 0; j < y; j++) {
+		float sum = 0.0;
+		for (int i = 0; i < x; i++) {
+			sum += deltaTable[i][j];
+		}
+		averageDelta.push_back(sum / x);
+	}
+
+	printf("\n Average delta:");
+	for (int i = 0; i < average.size(); i++)
+		printf(" %8.3f  \t", averageDelta[i]);
+
 }
