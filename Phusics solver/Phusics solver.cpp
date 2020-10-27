@@ -6,7 +6,6 @@
 #include <iostream>
 #include <sstream>
 #include <cstdlib>
-#include <functional>
 
 void init_2dVector(std::vector<std::vector<float>>* vector, int x, int y) {
 
