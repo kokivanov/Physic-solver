@@ -1,6 +1,5 @@
 ﻿  Phusics solver.cpp
-C:\Users\kokiv\source\repos\Phusics solver\Phusics solver\Phusics solver.cpp(30,10): warning C4129: '.': unrecognized character escape sequence
-C:\Users\kokiv\source\repos\Phusics solver\Phusics solver\Phusics solver.cpp(104,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\kokiv\source\repos\Phusics solver\Phusics solver\Phusics solver.cpp(131,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\kokiv\source\repos\Phusics solver\Phusics solver\Phusics solver.cpp(136,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\kokiv\source\repos\Phusics solver\Phusics solver\Phusics solver.cpp(37,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\kokiv\source\repos\Phusics solver\Phusics solver\Phusics solver.cpp(69,10): warning C4129: '.': unrecognized character escape sequence
+C:\Users\kokiv\source\repos\Phusics solver\Phusics solver\Phusics solver.cpp(132,20): warning C4018: '<': signed/unsigned mismatch
   Phusics solver.vcxproj -> C:\Users\kokiv\source\repos\Phusics solver\Debug\Phusics solver.exe
