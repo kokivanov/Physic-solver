@@ -6,6 +6,9 @@
 #include <iostream>
 #include <sstream>
 #include <cstdlib>
+#include "localization.h"
+
+localization loc;
 
 void init_2dVector(std::vector<std::vector<float>>* vector, int x, int y) {
 
@@ -77,12 +80,32 @@ void printTemplate(int x, int y, int h, int w) {
 	}
 }
 
+void chooseLoc() {
+	fseek(stdin, 0, SEEK_END);
+	char n[3] = "EN";
+	printf("%s: \n", loc.lng.c_str());
+	printf("[EN/en] English \n[RU/ru] Русский \n");
+	if (scanf_s("%s", &n, 3) != 1) {
+		chooseLoc();
+	}
+	if (loc.setLoc(n) != 1) {
+		chooseLoc();
+	}
+}
+
 int main() {
+
+	SetConsoleOutputCP(1251);
+	SetConsoleCP(1251);
 
 	int x, y;
 
-	printf("Write amount of rows and columns separated by comma (\",\")\n");
-	scanf_s("%d, %d", &x, &y);
+	chooseLoc();
+
+	printf("%s (\",\")\n", loc.message.c_str());
+	if (scanf_s("%d, %d", &x, &y) != 1) {
+		printf("");
+	}
 
 	std::vector<std::vector<float>> table;
 	std::vector<std::vector<float>> deltaTable;
@@ -94,7 +117,7 @@ int main() {
 	init_2dVector(&deltaTable, x, y);
 
 	for (int i = 0; i < x; i++) {
-		printf("Row %i \n", i + 1);
+		printf("%s %i \n", loc.row.c_str(), i + 1);
 		for (int j = 0; j < y; j++) {
 			printTemplate(x, y, i, j);
 			scanf_s("%fl", &(table[i][j]));
@@ -103,12 +126,12 @@ int main() {
 
 	system("CLS");
 
-	printf("Current table: \n");
+	printf("%s: \n", loc.currentTable.c_str());
 	print_2dVector(&table, x, y);
 
 	average = averageColumn(&table, x, y);
 
-	printf("\n Average:");
+	printf("\n %s:", loc.average.c_str());
 	print_vector(&average);
 
 	for (int j = 0; j < y; j++) {
@@ -119,21 +142,20 @@ int main() {
 
 	printf("\n ");
 
-	printf("\n Delta:\n");
+	printf("\n %s:\n", loc.delta.c_str());
 	print_2dVector(&deltaTable, x, y);
 
 	averageDelta = averageColumn(&deltaTable, x, y);
 
-	printf("\n Average delta:");
+	printf("\n %s:", loc.averageDelata.c_str());
 	print_vector(&averageDelta);
 	printf("\n ");
 
-	printf("\n Error:");
+	printf("\n %s:", loc.error.c_str());
 	for (int i = 0; i < averageDelta.size(); i++)
 		printf(" %8.3f  \t", averageDelta[i] / average[i]);
 
 	printf("\n ");
 
-	system("pause");
 	system("pause");
 }

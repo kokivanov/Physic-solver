@@ -20,3 +20,5 @@
 *.testlog
 *.ipdb
 *.iobj
+*.exe
+*.exe
