@@ -1,6 +1,6 @@
 # Physics solver ver. a0.03
 
-**Download: / Скачать:** [alpha0.03](https://github.com/kokivanov/Physic-solver/releases/tag/a0.03 "link")
+**Download: / Скачать:** [alpha0.03](https://github.com/kokivanov/Physic-solver/releases/download/a0.03/Physics.solver.exe "link")
 
 ## [EN]
 Write the amount of rows and column like that `2, 6` then the program will show you table that you need to fill by your numbers. Finally programm will count and display average for every column, delta (difference between number in column and average in column) for every element and average delta for every column.
